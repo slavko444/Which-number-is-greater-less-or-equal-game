@@ -3,8 +3,7 @@
 An interactive computer game using the Pixijs framework.
 PixiJS is a popular 2D rendering library for creating interactive graphics, animations, and games in web browsers.
 
-![Screenshot (1)](https://github.com/slavko444/8086-Show-Real-Time/blob/main/Source%20code%20image.1.png)
-![Screenshot (2)](https://github.com/slavko444/8086-Show-Real-Time/blob/main/Source%20code%20image.2.png)
+![Screenshot (1)](https://github.com/slavko444/-Guess-which-number-is-greater-less-or-equal-game/blob/main/Game%20image.png)
 
 [Slavko Srebrenoski ](https://github.com/slavko444)
 
