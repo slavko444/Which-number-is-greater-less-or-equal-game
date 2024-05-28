@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/pixi.min.js"></script>
+    <script>
+        let app;
+        window.onload=function(){
+            app=new PIXI.Application(
+                {
+                    width:1330,
+                    height:600,
+                    backgroundColor: 0x2f2e57                
+                }
+            );
+        document.body.appendChild(app.view);
+
+        let score = 0;
+        let mistakes = 0;
+        let time = 60;
+
+        let number1 = getRandomNumber();
+        let number2 = getRandomNumber();
+
+        const text1 = new PIXI.Text(`${number1} ? `, { fontSize: 50, fill: 0xFFFFFF });
+        text1.position.set(150, 60);
+        app.stage.addChild(text1);
+
+        const text2 = new PIXI.Text(`${number2}`, { fontSize: 50, fill: 0xFFFFFF });
+        text2.position.set(265, 60);
+        app.stage.addChild(text2);
+
+        const buttonPogolemo = createButton(100, 50, ">", 0xFF0000);
+        buttonPogolemo.position.set(50, 150);
+
+        const buttonPomalo = createButton(100, 50, "<", 0x00FF00);
+        buttonPomalo.position.set(175, 150);
+
+        const buttonEdnakov = createButton(100, 50, "=", 0xe8e461);
+        buttonEdnakov.position.set(300, 150);
+
+       const scoreText = new PIXI.Text(`Score: ${score}`, { fontSize: 20, fill: 0xFFFFFF });
+        scoreText.position.set(50, 10);
+        app.stage.addChild(scoreText);
+
+        const mistakesText = new PIXI.Text(`Mistakes: ${mistakes}`, { fontSize: 20, fill: 0xFFFFFF });
+        mistakesText.position.set(250, 10);
+        app.stage.addChild(mistakesText);
+
+        const timerText = new PIXI.Text(`Time: ${time}`, { fontSize: 20, fill: 0xFFFFFF }); 
+        timerText.position.set(500, 10);
+        app.stage.addChild(timerText);
+
+        let timerInterval = setInterval(() => {
+            time--;
+            timerText.text = `Time: ${time}`;
+
+            if (time === 0) {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        }, 1000);
+
+        const messageText1 = new PIXI.Text('', { fontSize: 20, fill: 0xFF0000 });
+        messageText1.position.set(50, 210);
+        app.stage.addChild(messageText1);
+
+        const messageText2 = new PIXI.Text('', { fontSize: 20, fill: 0x1cfc08 });
+        messageText2.position.set(50, 210);
+        app.stage.addChild(messageText2);
+
+
+        function createButton(width, height, text, color) {
+            const button = new PIXI.Graphics();
+            button.beginFill(color);
+            button.drawRect(0, 0, width, height);
+            button.endFill();
+
+            const buttonText = new PIXI.Text(text, {
+                fontSize: 16,
+                fill: 0xFFFFFF,
+            });
+            buttonText.position.set(width / 2 - buttonText.width / 2, height / 2 - buttonText.height / 2);
+
+            button.addChild(buttonText);
+            app.stage.addChild(button);
+
+            button.interactive = true;
+            button.buttonMode = true;
+            button.on('pointerdown', () => {
+                if (time > 0) {
+                handleButtonClick(text);
+                }
+            });
+
+            return button;
+        }
+
+        function handleButtonClick(choice) {
+            let result = false;
+            if (choice === ">" && number1 > number2) {
+                result = true;
+            } else if (choice === "<" && number1 < number2) {
+                result = true;
+            } else if (choice === "=" && number1 === number2) {
+                result = true;
+            }
+
+            if (result) {
+                score++; 
+                scoreText.text = `Score: ${score}`; 
+                messageText2.text = "Точно! Избравте точен одговор.";
+                setTimeout(() => {
+                    messageText2.text = ''; 
+                }, 500);
+            }else {
+                mistakes++;
+                mistakesText.text = `Грешки: ${mistakes}`;
+                messageText1.text = "Грешка! Изберете повторно.";
+                setTimeout(() => {
+                    messageText1.text = ''; 
+                }, 500);
+            }
+
+            
+            number1 = getRandomNumber();
+            number2 = getRandomNumber();
+
+            text1.text = ` ${number1}`;
+            text2.text = ` ${number2}`;
+        }
+        function endGame() {
+            messageText2.text = "Крај на играта! Вашиот резултат е: " + score; 
+        }
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
