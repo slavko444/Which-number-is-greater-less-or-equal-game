@@ -1,4 +1,4 @@
-# Guess-which-number-is-greater-less-or-equal-game
+# Which-number-is-greater-less-or-equal-game
 
 An interactive computer game using the Pixijs framework.
 
