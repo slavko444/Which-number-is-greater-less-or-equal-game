@@ -1,1 +1,1 @@
-# -Guess-which-number-is-greater-less-or-equal-game
+# Guess-which-number-is-greater-less-or-equal-game
