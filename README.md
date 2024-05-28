@@ -17,7 +17,7 @@ Visual programming
 
 This project is built using the following tools:
 
-- [Pixijs](https://pixijs.com/): Assembler and emulator for the Intel 8086 microprocessor.
+- [Pixijs](https://pixijs.com/): 2D rendering library for creating interactive graphics, animations, and games in web browsers.
 
 **Getting Started**
 
