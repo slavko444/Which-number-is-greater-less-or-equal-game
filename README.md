@@ -18,6 +18,7 @@ Visual programming
 This project is built using the following tools:
 
 - [Pixijs](https://pixijs.com/): 2D rendering library for creating interactive graphics, animations, and games in web browsers.
+- [Visual Studio Code](https://code.visualstudio.com/): Editor redefined and optimized for building and debugging modern web and cloud applications. 
 
 **Getting Started**
 
